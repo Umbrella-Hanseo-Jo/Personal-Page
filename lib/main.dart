@@ -12,12 +12,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'HOME SWEAT HOME',
+      title: 'HOME SWEET HOME',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'HOME SWEAT HOME'),
+      home: const MyHomePage(title: 'HOME SWEET HOME'),
     );
   }
 }
@@ -77,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 const Icon(Icons.home, size: 60, color: Colors.deepPurple),
                 const SizedBox(height: 20),
                 const Text(
-                  'HOME SWEAT HOME',
+                  'HOME SWEET HOME',
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
