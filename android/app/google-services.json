@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "121776647440",
+    "project_id": "hsh-personal-homepage",
+    "storage_bucket": "hsh-personal-homepage.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:121776647440:android:2bf223372d4eea3d098995",
+        "android_client_info": {
+          "package_name": "hsh.personalpage.android.package"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYhNZ6C1STc8fdRdU1sdlHjakEQaoBXYk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
