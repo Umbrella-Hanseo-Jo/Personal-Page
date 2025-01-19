@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart'; // Firebase 인증 패키지
+import 'phone_auth_screen.dart'; // 전화번호 인증 화면을 위한 파일 추가
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -119,6 +120,18 @@ class _LoginPageState extends State<LoginPage> {
               ElevatedButton(
                 onPressed: _signUp,
                 child: const Text('Sign Up'),
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () {
+                  // 전화번호 인증 화면으로 이동
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const PhoneAuthScreen()),
+                  );
+                },
+                child: const Text('Log In with Phone Number'),
               ),
             ],
           ),
