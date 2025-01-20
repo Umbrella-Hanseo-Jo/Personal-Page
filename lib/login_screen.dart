@@ -114,12 +114,12 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _login,
-                child: const Text('Log In'),
+                child: const Text('Sign in'),
               ),
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: _signUp,
-                child: const Text('Sign Up'),
+                child: const Text('Sign up'),
               ),
               const SizedBox(height: 16),
               ElevatedButton(
@@ -131,7 +131,7 @@ class _LoginPageState extends State<LoginPage> {
                         builder: (context) => const PhoneAuthScreen()),
                   );
                 },
-                child: const Text('Log In with Phone Number'),
+                child: const Text('Sign in with Phone Number'),
               ),
             ],
           ),
