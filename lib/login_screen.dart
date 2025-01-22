@@ -133,18 +133,6 @@ class _LoginPageState extends State<LoginPage> {
                 },
                 child: const Text('Sign in with Phone Number'),
               ),
-              const SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: () {
-                  // 전화번호 인증 화면으로 이동
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const PhoneAuthScreen()),
-                  );
-                },
-                child: const Text('Log In with Phone Number'),
-              ),
             ],
           ),
         ),
