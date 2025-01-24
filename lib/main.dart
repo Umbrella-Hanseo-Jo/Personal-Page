@@ -7,10 +7,17 @@ import 'firebase_options.dart'; // Firebase 설정을 위한 파일
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Firebase 초기화 시 FirebaseOptions 전달
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform, // 플랫폼에 맞는 Firebase 설정
-  );
+  try {
+    // Firebase 초기화 시 FirebaseOptions 전달
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform, // 플랫폼에 맞는 Firebase 설정
+    );
+  } catch (e) {
+    print('Firebase initialization failed: $e');
+    // 초기화 실패 시 오류 화면 또는 처리 로직 추가 가능
+    return;
+  }
+
   runApp(const MyApp());
 }
 
