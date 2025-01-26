@@ -136,6 +136,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   onPressed: _stopBackgroundMusic, // 음악 정지
                   child: const Text('음악 정지'),
                 ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/home2'); // '/home2'로 이동
+                  },
+                  child: const Text('클릭'),
+                ),
               ],
             ),
           ),
