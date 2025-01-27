@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audioplayers.dart'; // audioplayers 패키지 임포트
-import 'package:flutter/foundation.dart'; // kIsWeb을 사용하기 위한 임포트
+import 'package:audioplayers/audioplayers.dart'; // audioplayers 패키지
+import 'package:flutter/foundation.dart'; // kIsWeb을 사용하기 위한 패키지
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -108,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
             fit: BoxFit.fitWidth, // 좌우는 꽉 차게 하고, 상하 비율은 유지
             child: SizedBox(
               width: MediaQuery.of(context).size.width, // 화면 너비를 맞춤
-              child: Image.asset('5000x5000bb.jpg'), // 이미지 로드
+              child: Image.asset('5000x5000hsh.jpg'), // 이미지 로드
             ),
           ),
           Center(
