@@ -78,6 +78,12 @@ class _HomeScreen2State extends State<HomeScreen2> {
                   child: const Text('음악 정지'),
                 ),
                 const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/home3'); // '/home3'로 이동
+                  },
+                  child: const Text('클릭'),
+                ),
               ],
             ),
           ),

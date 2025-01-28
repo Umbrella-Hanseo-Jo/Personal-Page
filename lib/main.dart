@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart'; // Firebase 초기화 패키�
 import 'login_screen.dart'; // 로그인 화면으로 이동
 import 'home_screen.dart'; // 홈 화면으로 이동
 import 'home_screen2.dart'; // 홈2 화면으로 이동
+import 'home_screen3.dart'; // 홈3 화면으로 이동
 import 'firebase_options.dart'; // Firebase 설정 파일
 import 'package:logger/logger.dart'; // 로깅을 위한 logger 패키지
 
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/home': (context) => const MyHomePage(title: 'HOME SWEET HOME'),
         '/home2': (context) => const HomeScreen2(),
+        '/home3': (context) => const HomeScreen3(),
         // 다른 라우트들도 여기 추가 가능
       },
     );
