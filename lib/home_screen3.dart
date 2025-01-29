@@ -55,7 +55,7 @@ class _HomeScreen3State extends State<HomeScreen3> {
             fit: BoxFit.fitWidth, // 좌우는 꽉 차게 하고, 상하 비율은 유지
             child: SizedBox(
               width: MediaQuery.of(context).size.width, // 화면 너비를 맞춤
-              child: Image.asset('5000x5000wtts.jpg'), // 이미지 로드
+              child: Image.asset('3000x3000four.jpg'), // 이미지 로드
             ),
           ),
           Center(
