@@ -20,6 +20,7 @@ class _HomeScreen2State extends State<HomeScreen2> {
     // 뒤로 가기 버튼 동작을 가로채는 인터셉터
     BackButtonInterceptor.add((stopDefaultButtonEvent, routeInfo) =>
         _onBackPressed(stopDefaultButtonEvent));
+    // 웹에서는 사용자의 상호작용을 기다려야 하므로 자동으로 음악을 재생하지 않음
     if (!kIsWeb) {
       // 모바일에서는 앱 실행 시 음악 자동 재생
       _playBackgroundMusic();

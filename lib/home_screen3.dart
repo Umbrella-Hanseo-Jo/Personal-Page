@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart'; // audioplayers 패키지
 import 'package:flutter/foundation.dart'; // kIsWeb을 사용하기 위한 패키지
+import 'package:back_button_interceptor/back_button_interceptor.dart'; // back_button_interceptor 패키지
 
 class HomeScreen3 extends StatefulWidget {
   const HomeScreen3({super.key});
@@ -16,6 +17,9 @@ class _HomeScreen3State extends State<HomeScreen3> {
   void initState() {
     super.initState();
 
+    // 뒤로 가기 버튼 동작을 가로채는 인터셉터
+    BackButtonInterceptor.add((stopDefaultButtonEvent, routeInfo) =>
+        _onBackPressed(stopDefaultButtonEvent));
     // 웹에서는 사용자의 상호작용을 기다려야 하므로 자동으로 음악을 재생하지 않음
     if (!kIsWeb) {
       // 모바일에서는 앱 실행 시 음악 자동 재생
@@ -36,9 +40,18 @@ class _HomeScreen3State extends State<HomeScreen3> {
     await _audioPlayer.stop(); // 음악 정지
   }
 
+  // 뒤로가기 버튼을 눌렀을 때의 동작을 정의하는 함수
+  bool _onBackPressed(bool stopDefaultButtonEvent) {
+    Navigator.pop(context); // 페이지 닫기, 음악 계속 재생
+    return true; // 뒤로가기 동작 가로챔
+  }
+
   @override
   void dispose() {
-    _audioPlayer.dispose(); // 페이지가 사라질 때 오디오 리소스를 해제
+    // 뒤로가기 인터셉터 제거
+    BackButtonInterceptor.remove((stopDefaultButtonEvent, routeInfo) =>
+        _onBackPressed(stopDefaultButtonEvent));
+
     super.dispose();
   }
 
@@ -47,6 +60,12 @@ class _HomeScreen3State extends State<HomeScreen3> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('HAPPY'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context); // 뒤로 가기 동작만 처리
+          },
+        ),
       ),
       backgroundColor: Colors.white, // 배경을 하얀색으로 설정
       body: Stack(
