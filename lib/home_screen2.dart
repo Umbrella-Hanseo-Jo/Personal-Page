@@ -18,7 +18,8 @@ class _HomeScreen2State extends State<HomeScreen2> {
     super.initState();
 
     // 뒤로 가기 버튼 동작을 가로채는 인터셉터
-    BackButtonInterceptor.add(_onBackPressed);
+    BackButtonInterceptor.add((stopDefaultButtonEvent, routeInfo) =>
+        _onBackPressed(stopDefaultButtonEvent));
     if (!kIsWeb) {
       // 모바일에서는 앱 실행 시 음악 자동 재생
       _playBackgroundMusic();
@@ -39,7 +40,7 @@ class _HomeScreen2State extends State<HomeScreen2> {
   }
 
   // 뒤로가기 버튼을 눌렀을 때의 동작을 정의하는 함수
-  bool _onBackPressed() {
+  bool _onBackPressed(bool stopDefaultButtonEvent) {
     Navigator.pop(context); // 페이지 닫기, 음악 계속 재생
     return true; // 뒤로가기 동작 가로챔
   }
@@ -47,7 +48,8 @@ class _HomeScreen2State extends State<HomeScreen2> {
   @override
   void dispose() {
     // 뒤로가기 인터셉터 제거
-    BackButtonInterceptor.remove(_onBackPressed);
+    BackButtonInterceptor.remove((stopDefaultButtonEvent, routeInfo) =>
+        _onBackPressed(stopDefaultButtonEvent));
 
     super.dispose();
   }
