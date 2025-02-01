@@ -6,6 +6,8 @@ import 'home_screen2.dart'; // 홈2 화면으로 이동
 import 'home_screen3.dart'; // 홈3 화면으로 이동
 import 'firebase_options.dart'; // Firebase 설정 파일
 import 'package:logger/logger.dart'; // 로깅을 위한 logger 패키지
+import 'package:provider/provider.dart'; // Provider 패키지
+import 'audio_provider.dart'; // AudioProvider 설정 파일
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +25,13 @@ void main() async {
     return;
   }
 
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => AudioProvider(), //AudioProvider 등록
+      // create: (context) => AudioPlayerProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
