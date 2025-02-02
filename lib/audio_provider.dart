@@ -33,4 +33,10 @@ class AudioProvider extends ChangeNotifier {
       play(asset);
     }
   }
+
+  // AudioPlayer를 초기화하는 메서드
+  void reset() {
+    _audioPlayer.stop();
+    _isPlaying = false;
+  }
 }

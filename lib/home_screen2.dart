@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart'; // kIsWeb을 사용하기 위한 패키지
 import 'package:provider/provider.dart'; // Provider 패키지
 import 'audio_provider.dart'; // AudioProvider 설정 파일
 
@@ -9,13 +8,7 @@ class HomeScreen2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // AudioProvider를 가져옵니다.
-    final audioProvider = Provider.of<AudioProvider>(context);
-
-    // 웹에서는 사용자의 상호작용을 기다려야 하므로 자동으로 음악을 재생하지 않음
-    if (!kIsWeb && !audioProvider.isPlaying) {
-      // 모바일에서는 앱 실행 시 음악 자동 재생
-      audioProvider.play('wtts.mp3');
-    }
+    final audioProvider = Provider.of<AudioProvider>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(
