@@ -7,8 +7,7 @@ class HomeScreen2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // AudioProvider를 가져옵니다.
-    final audioProvider = Provider.of<AudioProvider>(context, listen: false);
+    // Consumer를 사용하여 AudioProvider를 UI에 반영
 
     return Scaffold(
       appBar: AppBar(
@@ -40,25 +39,29 @@ class HomeScreen2 extends StatelessWidget {
                 ),
                 const SizedBox(height: 20), // 간격 추가
 
-                ElevatedButton(
-                  onPressed: () {
-                    audioProvider.play('wtts.mp3'); // 음악 재생
+                Consumer<AudioProvider>(
+                  builder: (context, audioProvider, child) {
+                    return Column(
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {
+                            audioProvider
+                                .togglePlayPause('wtts.mp3'); // 음악 시작/정지
+                          },
+                          child:
+                              Text(audioProvider.isPlaying ? '음악 정지' : '음악 시작'),
+                        ),
+                        const SizedBox(height: 20),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(
+                                context, '/home3'); // '/home3'로 이동
+                          },
+                          child: const Text('클릭'),
+                        ),
+                      ],
+                    );
                   },
-                  child: const Text('음악 시작'),
-                ),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    audioProvider.stop(); // 음악 정지
-                  },
-                  child: const Text('음악 정지'),
-                ),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/home3'); // '/home3'로 이동
-                  },
-                  child: const Text('클릭'),
                 ),
               ],
             ),

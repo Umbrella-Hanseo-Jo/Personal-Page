@@ -26,11 +26,11 @@ class AudioProvider extends ChangeNotifier {
   }
 
   // 음악 상태 변경
-  void togglePlayPause(String asset) {
+  Future<void> togglePlayPause(String asset) async {
     if (_isPlaying) {
-      stop();
+      await stop();
     } else {
-      play(asset);
+      await play(asset);
     }
   }
 
@@ -38,5 +38,6 @@ class AudioProvider extends ChangeNotifier {
   void reset() {
     _audioPlayer.stop();
     _isPlaying = false;
+    notifyListeners();
   }
 }
