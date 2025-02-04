@@ -11,18 +11,22 @@ class AudioProvider extends ChangeNotifier {
 
   // 음악 시작
   Future<void> play(String asset) async {
-    await _audioPlayer.setSource(AssetSource(asset));
-    await _audioPlayer.setReleaseMode(ReleaseMode.loop);
-    await _audioPlayer.resume();
-    _isPlaying = true;
-    notifyListeners();
+    if (!_isPlaying) {
+      await _audioPlayer.setSource(AssetSource(asset));
+      await _audioPlayer.setReleaseMode(ReleaseMode.loop);
+      await _audioPlayer.resume();
+      _isPlaying = true;
+      notifyListeners();
+    }
   }
 
   // 음악 정지
   Future<void> stop() async {
-    await _audioPlayer.stop();
-    _isPlaying = false;
-    notifyListeners();
+    if (_isPlaying) {
+      await _audioPlayer.stop();
+      _isPlaying = false;
+      notifyListeners();
+    }
   }
 
   // 음악 상태 변경

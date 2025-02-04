@@ -12,8 +12,18 @@ import 'audio_provider.dart'; // AudioProvider 설정 파일
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  var logger = Logger(); // logger 인스턴스 생성
+  await initializeFirebase(); // Firebase 초기화 함수 호출
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => AudioProvider(), // AudioProvider 등록
+      child: const MyApp(),
+    ),
+  );
+}
 
+// Firebase 초기화 함수
+Future<void> initializeFirebase() async {
+  var logger = Logger(); // logger 인스턴스 생성
   try {
     // Firebase 초기화 시 FirebaseOptions 전달
     await Firebase.initializeApp(
@@ -22,16 +32,7 @@ void main() async {
   } catch (e) {
     // Firebase 초기화 실패 시 오류 로그 기록
     logger.e('Firebase initialization failed: $e');
-    return;
   }
-
-  runApp(
-    ChangeNotifierProvider(
-      create: (_) => AudioProvider(), //AudioProvider 등록
-      // create: (context) => AudioPlayerProvider(),
-      child: const MyApp(),
-    ),
-  );
 }
 
 class MyApp extends StatelessWidget {
