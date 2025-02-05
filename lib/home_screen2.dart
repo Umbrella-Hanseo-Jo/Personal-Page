@@ -7,8 +7,6 @@ class HomeScreen2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Consumer를 사용하여 AudioProvider를 UI에 반영
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Welcome to the Show'),
@@ -39,29 +37,22 @@ class HomeScreen2 extends StatelessWidget {
                 ),
                 const SizedBox(height: 20), // 간격 추가
 
-                Consumer<AudioProvider>(
-                  builder: (context, audioProvider, child) {
-                    return Column(
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            audioProvider
-                                .togglePlayPause('wtts.mp3'); // 음악 시작/정지
-                          },
-                          child:
-                              Text(audioProvider.isPlaying ? '음악 정지' : '음악 시작'),
-                        ),
-                        const SizedBox(height: 20),
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.pushNamed(
-                                context, '/home3'); // '/home3'로 이동
-                          },
-                          child: const Text('클릭'),
-                        ),
-                      ],
-                    );
+                // context.watch()를 통해 상태 변화를 감지하고, UI를 자동으로 업데이트
+                ElevatedButton(
+                  onPressed: () {
+                    // 상태 변화 (토글)
+                    context.read<AudioProvider>().togglePlayPause('wtts.mp3');
                   },
+                  child: Text(context.watch<AudioProvider>().isPlaying
+                      ? '음악 정지'
+                      : '음악 시작'),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/home3'); // '/home3'로 이동
+                  },
+                  child: const Text('클릭'),
                 ),
               ],
             ),
