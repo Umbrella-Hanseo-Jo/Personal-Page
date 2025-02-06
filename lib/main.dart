@@ -32,6 +32,8 @@ Future<void> initializeFirebase() async {
   } catch (e) {
     // Firebase 초기화 실패 시 오류 로그 기록
     logger.e('Firebase initialization failed: $e');
+    // Firebase 초기화 실패 시 앱 종료
+    rethrow; // 예외 다시 던지기
   }
 }
 
