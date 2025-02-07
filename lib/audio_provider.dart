@@ -40,8 +40,6 @@ class AudioProvider extends ChangeNotifier {
 
   // AudioPlayer를 초기화하는 메서드
   void reset() {
-    _audioPlayer.stop();
-    _isPlaying = false;
-    notifyListeners();
+    stop();
   }
 }
