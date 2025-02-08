@@ -10,7 +10,7 @@ import 'package:provider/provider.dart'; // Provider 패키지
 import 'audio_provider.dart'; // AudioProvider 설정 파일
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized(); // Flutter 초기화 대기
 
   await initializeFirebase(); // Firebase 초기화 함수 호출
   runApp(
@@ -32,8 +32,9 @@ Future<void> initializeFirebase() async {
   } catch (e) {
     // Firebase 초기화 실패 시 오류 로그 기록
     logger.e('Firebase initialization failed: $e');
-    // Firebase 초기화 실패 시 앱 종료
-    rethrow; // 예외 다시 던지기
+    // Firebase 초기화 실패 시 예외 던지기
+    throw Exception(
+        'Firebase initialization failed. Please check your configuration.');
   }
 }
 
