@@ -39,7 +39,7 @@ class AudioProvider extends ChangeNotifier {
   }
 
   // AudioPlayer를 초기화하는 메서드
-  void reset() {
-    stop();
+  Future<void> reset() async {
+    await stop(); // stop 호출 시 비동기적으로 처리
   }
 }

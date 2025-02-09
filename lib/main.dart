@@ -12,7 +12,13 @@ import 'audio_provider.dart'; // AudioProvider 설정 파일
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Flutter 초기화 대기
 
-  await initializeFirebase(); // Firebase 초기화 함수 호출
+  try {
+    await initializeFirebase(); // Firebase 초기화 함수 호출
+  } catch (e) {
+    runApp(const ErrorApp()); // Firebase 초기화 실패 시, 오류 앱 실행
+    return;
+  }
+
   runApp(
     ChangeNotifierProvider(
       create: (_) => AudioProvider(), // AudioProvider 등록
@@ -35,6 +41,21 @@ Future<void> initializeFirebase() async {
     // Firebase 초기화 실패 시 예외 던지기
     throw Exception(
         'Firebase initialization failed. Please check your configuration.');
+  }
+}
+
+class ErrorApp extends StatelessWidget {
+  const ErrorApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Error',
+      home: Scaffold(
+        appBar: AppBar(title: const Text('Firebase Initialization Error')),
+        body: const Center(child: Text('Firebase initialization failed.')),
+      ),
+    );
   }
 }
 
