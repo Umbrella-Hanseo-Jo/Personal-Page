@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart'; // Firebase 인증 패키지
-import 'phone_auth_screen.dart'; // 전화번호 인증 화면을 위한 파일 추가
+import 'phone_auth_screen.dart'; // 전화번호 인증 화면을 위한 파일
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -28,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
         );
         // 로그인 성공 시, 홈 화면으로 이동(이전 화면을 모두 제거)
         if (mounted) {
-          // mounted 체크 추가
+          // mounted 체크
           Navigator.pushNamedAndRemoveUntil(
             context,
             '/home', // 네임드 라우트 이름
@@ -38,9 +38,22 @@ class _LoginPageState extends State<LoginPage> {
       } catch (e) {
         // 로그인 실패 시 에러 메시지 출력
         if (mounted) {
-          // mounted 체크 추가
+          // mounted 체크
+          String errorMessage = '로그인 실패: ${e.toString()}';
+          if (e is FirebaseAuthException) {
+            switch (e.code) {
+              case 'user-not-found':
+                errorMessage = 'tmp1';
+                break;
+              case 'wrong-password':
+                errorMessage = 'tmp2';
+                break;
+              default:
+                errorMessage = 'tmp3';
+            }
+          }
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('로그인 실패: ${e.toString()}')),
+            SnackBar(content: Text(errorMessage)),
           );
         }
       }
@@ -57,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
         );
         // 회원가입 후 홈 화면으로 이동(이전 화면을 모두 제거)
         if (mounted) {
-          // mounted 체크 추가
+          // mounted 체크
           Navigator.pushNamedAndRemoveUntil(
             context,
             '/home', // 네임드 라우트 이름
@@ -67,9 +80,24 @@ class _LoginPageState extends State<LoginPage> {
       } catch (e) {
         // 회원가입 실패 시 에러 메시지 출력
         if (mounted) {
-          // mounted 체크 추가
+          // mounted 체크
+          String errorMessage = '회원가입 실패: ${e.toString()}';
+          if (e is FirebaseAuthException) {
+            switch (e.code) {
+              case 'email-already-in-use':
+                errorMessage =
+                    'The email address is already in use by another account.';
+                break;
+              case 'weak-password':
+                errorMessage = 'Password should be at least 6 characters.';
+                break;
+              default:
+                errorMessage =
+                    'The supplied auth credential is incorrect, malformed or has expired.';
+            }
+          }
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('회원가입 실패: ${e.toString()}')),
+            SnackBar(content: Text(errorMessage)),
           );
         }
       }
